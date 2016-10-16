@@ -14,4 +14,4 @@ GoogleによるPythonの入門講義。サクッとPythonの文法を学ぶこ�
   
 [2. Problem Solving with Algorithms and Data Structures using Python](http://interactivepython.org/runestone/static/pythonds/index.html#)
 
-Pythonの文法の解説（特に1にはないclassの解説がわかりやすかった。）に加えて、基本的なアルゴリズムについて学ぶことができます。レベル的にも、"A Second Course in Algorithms"のpre-requisiteに近いと思われます。
+Pythonの文法の解説（特に1にはないclassの解説がわかりやすいです）に加えて、基本的なアルゴリズムについて学ぶことができます。レベル的にも、"A Second Course in Algorithms"のpre-requisiteに近いと思われます。
