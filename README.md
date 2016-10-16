@@ -11,7 +11,7 @@ Python 3系 + Jupyter Notebook を主に使います。
 グラフ系のアルゴリズムを実装する際には、[NetworkX](https://networkx.github.io/)を用いるかもしれません。
 
 ## Pythonの練習
-もし、Pythonを使ったことがないor不慣れな場合は以下のサイトが参考になります。
+もし、Pythonを使ったことがないor不慣れな場合は以下のサイトが参考になると思います。
 
 [1. Google's Python Class](https://developers.google.com/edu/python/)
 
@@ -31,8 +31,8 @@ Pythonの文法の解説（特に1にはないclassの解説がわかりやす�
 
 [2. Kleinberg(2005), *Algorithm Design*](https://www.amazon.com/Algorithm-Design-Jon-Kleinberg/dp/0321295358)
 
-分厚い。[邦訳](https://www.amazon.co.jp/%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3-Jon-Kleinberg/dp/4320122178)あり。応用例などが豊富。
+分厚い。[邦訳](https://www.amazon.co.jp/%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3-Jon-Kleinberg/dp/4320122178)あり。応用例などが豊富で、次に挙げるCLRSよりは読んでいて楽しそう。特に、2章「アルゴリズム解析の基礎事項」と8章「NPと計算困難性」は参考になりそう。
 
 [3. Cormen, *et al.*(2009), *Introduction to ALgorithms*](https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844)
 
-これも分厚い。昔から定評のある教科書らしいです。（多分アルゴリズム版マスコレルみたいな感じです）CLRSと略されてたりします。
+これも分厚い。[邦訳](https://www.amazon.co.jp/%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%82%A4%E3%83%B3%E3%83%88%E3%83%AD%E3%83%80%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3-%E7%AC%AC3%E7%89%88-%E7%B7%8F%E5%90%88%E7%89%88-%E4%B8%96%E7%95%8C%E6%A8%99%E6%BA%96MIT%E6%95%99%E7%A7%91%E6%9B%B8-%E3%82%B3%E3%83%AB%E3%83%A1%E3%83%B3/dp/476490408X)あり。昔から定評のある教科書らしいです。（多分アルゴリズム版マスコレルみたいな感じです）CLRSと略されてたりします。
