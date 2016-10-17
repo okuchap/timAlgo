@@ -3,7 +3,7 @@
 松島先生主催の[メカニズムデザイン勉強会](http://www.econexp.org/hitoshi/AMFmeeting.htm)で、
 Stanford CS DepartmentのTim Roughgardenによる講義["A Second Course in Algorithms"](http://theory.stanford.edu/~tim/w16/w16.html)のレクチャーノートを読むので、その成果物を挙げていきます。講義に出てきたアルゴリズムをちまちま実装していけたらなあ、と思っています。
 
-"*Ch\*\*.ipynb*"というファイルが、第\*\*回の講義に対応したノートになっています。
+"*Chxx.ipynb*"というファイルが、第xx回の講義に対応したノートになっています。
 
 ## 使用言語とか環境とか
 Python 3系 + Jupyter Notebook を主に使います。
