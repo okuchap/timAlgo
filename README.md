@@ -7,10 +7,10 @@ Stanford CS DepartmentのTim Roughgardenによる講義["A Second Course in Algo
 
 ## 使用言語とか環境とか
 Python 3系 + Jupyter Notebook を主に使います。
-ノートを見たり、編集したりするのには、Pythonやその周りの諸々を導入する必要があります。
+ノートを編集するには、Pythonやその周りの諸々を導入する必要があります。
 導入は、Anacondaを用いると良いと思います。[尾山ゼミのgithubページ](https://github.com/OyamaZemi/StudyNotes/blob/master/README.md)に解説があります。
 
-グラフ系のアルゴリズムを実装する際には、[NetworkX](https://networkx.github.io/)を用いるかもしれません。
+グラフ系のアルゴリズムを実装する際には、[NetworkX](https://networkx.github.io/)を用います。
 
 ## Pythonの練習
 もし、Pythonを使ったことがないor不慣れな場合は以下のサイトが参考になると思います。
@@ -41,4 +41,4 @@ Pythonの文法の解説（特に1にはないclassの解説がわかりやす�
 
 [4. 藤重悟(2002)『グラフ・ネットワーク・組合せ論』共立出版](https://www.amazon.co.jp/%E3%82%B0%E3%83%A9%E3%83%95%E3%83%BB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%BB%E7%B5%84%E5%90%88%E3%81%9B%E8%AB%96-%E5%B7%A5%E7%B3%BB%E6%95%B0%E5%AD%A6%E8%AC%9B%E5%BA%A7-18-%E8%97%A4%E9%87%8D-%E6%82%9F/dp/4320016173)
 
-グラフ理論についての教科書。2章がレクチャーノート前半部分の内容をカバーしています。
+グラフ理論についての教科書。2章がレクチャーノート前半部分の内容を一部カバーしています。
