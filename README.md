@@ -21,7 +21,7 @@ GoogleによるPythonの入門講義。サクッとPythonの文法を学ぶこ�
   
 [2. Problem Solving with Algorithms and Data Structures using Python](http://interactivepython.org/runestone/static/pythonds/index.html#)
 
-Pythonの文法の解説（特に1にはないclassの解説がわかりやすいです）に加えて、基本的なアルゴリズムについて学ぶことができます。レベル的にも、"A Second Course in Algorithms"のpre-requisiteに近いと思われます。
+Pythonの文法の解説（1にはないclassの解説がわかりやすいです）に加えて、基本的なアルゴリズムについて学ぶことができます。レベル的にも、"A Second Course in Algorithms"のprerequisiteに近いと思われます。
 
 ## 参考になりそうな文献
 レクチャーノートを読んでいる中でわからないものが出てきた際に、参考にできそうな文献を挙げておきます。
@@ -42,3 +42,7 @@ Pythonの文法の解説（特に1にはないclassの解説がわかりやす�
 [4. 藤重悟(2002)『グラフ・ネットワーク・組合せ論』共立出版](https://www.amazon.co.jp/%E3%82%B0%E3%83%A9%E3%83%95%E3%83%BB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%BB%E7%B5%84%E5%90%88%E3%81%9B%E8%AB%96-%E5%B7%A5%E7%B3%BB%E6%95%B0%E5%AD%A6%E8%AC%9B%E5%BA%A7-18-%E8%97%A4%E9%87%8D-%E6%82%9F/dp/4320016173)
 
 グラフ理論についての教科書。2章がレクチャーノート前半部分の内容を一部カバーしています。
+
+[5. 今野浩(1987)『線形計画法』日科技連出版社](https://www.amazon.co.jp/%E7%B7%9A%E5%BD%A2%E8%A8%88%E7%94%BB%E6%B3%95-%E4%BB%8A%E9%87%8E-%E6%B5%A9/dp/4817150149)
+
+単体法の解説がわかりやすいです。
