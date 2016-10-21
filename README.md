@@ -5,6 +5,11 @@ Stanford CS DepartmentのTim Roughgardenによる講義["A Second Course in Algo
 
 "*Chxx.ipynb*"というファイルが、第xx回の講義に対応したノートになっています。
 
+## 作ったものたち
+
+* [Chapter 01](http://nbviewer.jupyter.org/github/okuchap/timAlgo/blob/master/Ch01.ipynb)
+BFS, A Naive Greedy algorithm, Ford-Fulkerson algorithm
+
 ## 使用言語とか環境とか
 Python 3系 + Jupyter Notebook を主に使います。
 ノートを編集するには、Pythonやその周りの諸々を導入する必要があります。
