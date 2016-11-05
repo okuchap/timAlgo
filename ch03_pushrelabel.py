@@ -1,4 +1,4 @@
-def Initialize_(G, s, t):
+def Initialize(G, s, t):
     '''
     Inputs:
         G: a graph
