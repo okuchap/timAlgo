@@ -10,6 +10,7 @@ Stanford CS DepartmentのTim Roughgardenによる講義["A Second Course in Algo
 * [Chapter 01](http://nbviewer.jupyter.org/github/okuchap/timAlgo/blob/master/Ch01.ipynb)
 BFS, A Naive Greedy algorithm, Ford-Fulkerson algorithm
 * [Chapter 02](http://nbviewer.jupyter.org/github/okuchap/timAlgo/blob/master/Ch02.ipynb) Edmonds-Karp algorithm, Dinic's algorithm(未実装)
+* [Chapter 03](http://nbviewer.jupyter.org/github/okuchap/timAlgo/blob/master/Ch03.ipynb) Push-Relabel algorithm
 
 ## 使用言語とか環境とか
 Python 3系 + Jupyter Notebook を主に使います。
