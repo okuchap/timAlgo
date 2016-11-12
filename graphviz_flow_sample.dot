@@ -1,0 +1,12 @@
+strict digraph  {
+	rankdir=LR;
+	node [shape = circle];
+	s -> w	 [label = "0/2" ];
+	s -> v	 [label = "0/3" ];
+	w -> t	 [label = "0/3" ];
+	v -> t	 [label = "0/2" ];
+	v -> w	 [label = "0/5" ];
+    {rank = same; v; w;}
+    {rank = min; s;}
+    {rank = max; t;}
+}

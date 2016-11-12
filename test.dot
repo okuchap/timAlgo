@@ -1,0 +1,12 @@
+strict digraph  {
+	w -> t	 [capacity=3,
+		flow=0];
+	v -> w	 [capacity=5,
+		flow=0];
+	v -> t	 [capacity=2,
+		flow=0];
+	s -> w	 [capacity=2,
+		flow=0];
+	s -> v	 [capacity=3,
+		flow=0];
+}
