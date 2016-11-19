@@ -81,7 +81,7 @@ def BFS_GP(G, r, V, W):
             candidates = [p for p in G.neighbors(
                 v) if (p in G.graph['M_vertices'])]
         else:
-            candidates = [p for p in G.neighbors(v) if ((not p in past) and (
+            candidates = [p for p in G.neighbors(v) if ((p not in past) and (
                 G[v][p]['cost'] - G.node[v]['price'] - G.node[p]['price'] == 0))]
 
         return candidates
@@ -180,8 +180,15 @@ def Hungarian(G, V, W):
 
     H = Initialize_H(G)
 
+    # for debugging
+    loopCount = 0
+
     while (len(H.graph['M_vertices']) != len(V)):
         # a current matching M is not a perfect matching
+
+        # for debugging
+        loopCount += 1
+        print('loopCount: ' + str(loopCount))
 
         # pick a unmatched node in V
         for p in V:
@@ -192,7 +199,7 @@ def Hungarian(G, V, W):
         # S: even level vertices of the BFS tree
         # N: odd level ones
         # path: a stucked path
-        path, S, N = BFS_GP(G, r, V, W)
+        path, S, N = BFS_GP(H, r, V, W)
 
         if (path[len(path) - 1] in (set(W) - set(H.graph['M_vertices']))):
             # the path contains an unmatched vertex w in W
@@ -215,12 +222,18 @@ def Hungarian(G, V, W):
                     H.graph['M_edges'].remove((path[i + 1], path[i]))
         else:
             # set diff as the reduced cost of the last edge in the stucked path
-            diff = G[path[len(path) - 2]][path[len(path) - 1]]['cost'] - \
-                G.node[path[len(path) - 2]]['price'] - \
-                G.node[len(path) - 1]['price']
+
+            # ここで問題が生じているみたい
+            # stucked pathが1点(この場合'v')からなるとき、('v','v')は存在しないのでkeyerror
+            # そもそも、そういうことが起きていいのか？（stuck pathのdef要確認）
+            # そういうとき、どういう処理をして進めばいいのか？
+
+            diff = H[path[len(path) - 2]][path[len(path) - 1]]['cost'] - \
+                H.node[path[len(path) - 2]]['price'] - \
+                H.node[path[len(path) - 1]]['price']
             for v in S:
-                G.node[v]['price'] += diff
+                H.node[v]['price'] += diff
             for w in N:
-                G.node[w]['price'] -= diff
+                H.node[w]['price'] -= diff
 
     return H.graph['M_edges']
