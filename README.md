@@ -12,7 +12,7 @@ BFS, A Naive Greedy algorithm, Ford-Fulkerson algorithm
 * [Chapter 02](http://nbviewer.jupyter.org/github/okuchap/timAlgo/blob/master/Ch02.ipynb) Edmonds-Karp algorithm, Dinic's algorithm(未実装)
 * [Chapter 03](http://nbviewer.jupyter.org/github/okuchap/timAlgo/blob/master/Ch03.ipynb) Push-Relabel algorithm
 * [Chapter 04](http://nbviewer.jupyter.org/github/okuchap/timAlgo/blob/master/Ch04.ipynb) Bipartite Matching
-* [Chapter 05](http://nbviewer.jupyter.org/github/okuchap/timAlgo/blob/master/Ch05.ipynb) The Hungarian Algorithm(未完)
+* [Chapter 05](http://nbviewer.jupyter.org/github/okuchap/timAlgo/blob/master/Ch05.ipynb) The Hungarian Algorithm(とりあえず、簡単な例で動くことは確認)
 
 ## 使用言語とか環境とか
 Python 3系 + Jupyter Notebook を主に使います。

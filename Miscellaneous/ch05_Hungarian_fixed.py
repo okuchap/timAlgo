@@ -49,13 +49,14 @@ def BFS_GP(G, r, V, W):
     r: the first unmatched vertex r of V(the root of a BFS tree)
     Return
     ------
-    a list (path, S, N)
+    a list (path, S, N, match)
         path: a list of vertices representing a stucked path P, [r, ..., v]
         S: even level vertices of the BFS tree
         N: odd level ones
+        match: False if the search tree contains an unmatched vertex w in W
     '''
 
-    def candidates(G, v, level):
+    def candidate(G, v, level, past):
         '''return a list of vertices(say, candidates) that satisfy the condition(*):
             1. adding (v,p) to the current path keep the path M-alternating
             2. (v,p) is tight
@@ -79,7 +80,7 @@ def BFS_GP(G, r, V, W):
         if level % 2 != 0:
             # このときcandidatesには多くとも一点しか（vとmatchしている点）含まれないはず
             candidates = [p for p in G.neighbors(
-                v) if (p in G.graph['M_vertices'])]
+                v) if ((v, p) in G.graph['M_edges'])]
         else:
             candidates = [p for p in G.neighbors(v) if ((p not in past) and (
                 G[v][p]['cost'] - G.node[v]['price'] - G.node[p]['price'] == 0))]
@@ -108,53 +109,108 @@ def BFS_GP(G, r, V, W):
     # level of a BFS tree
     level = 0
     # candidates, a list of nodes
-    candidates = candidates(G, v, level)
+    candidates = candidate(G, v, level, past)
+
+    # for debugging
+    print('before growing the BFS tree')
+    print('the root is: ' + v)
+    print('its price: ' + str(G.node[v]['price']))
+    print('its candidate: ' + str(candidates))
 
     while(len(candidates) != 0 and not (set(V) <= set(G.graph['M_vertices']))):
         # level = 0, or unstucked and there is a unmatched vertex of V
         # v: current vertex
         # level: current level
+
+        # for debugging
+        print('Grow the tree!')
+
         past.append(v)
         if (level % 2 == 0):
             S.append(v)
+
+            # for debugging
+            print('level: ' + str(level))
+            print('add ' + v + ' to S')
         else:
             N.append(v)
 
+            # for debugging
+            print('level: ' + str(level))
+            print('add ' + v + ' to N')
+
         level += 1
+
+        # for debugging
+        print('current node: ' + v)
+        print('candidates: ' + str(candidates))
+        print('future: ' + str(future))
+        print('distance: ' + str(G.node[v]['distance']))
 
         for p in candidates:
             if p not in future:
                 future.append(p)
-            G.node[p]['distance'] = G.node[v]['distance'] + 1
+                print ('append ' + p + ' to future')
+                G.node[p]['distance'] = G.node[v]['distance'] + 1
+                print ('distance: ' + str(G.node[p]['distance']))
 
-        v = future.popleft()
-        candidates = candidates(G, v, level)
+        if(len(future) == 0):
+            break
+        else:
+            v = future.popleft()
+            print('the next node: ' + v)
+            print('level: ' + str(level))
+            print('past: ' + str(past))
+            candidates = candidate(G, v, level, past)
+            print('candidates: ' + str(candidates))
+
+            if (len(candidates) == 0):
+                if (level % 2 == 0):
+                    S.append(v)
+                else:
+                    N.append(v)
 
     # After terminating the while loop, BFS search is stucked
     # First, check if v is another unmatched vertex or not
+    match = False
     if (v in G.graph['M_vertices']):
-        # v is a matched vertex
-        return 'stuck'
-    else:
-        # v is unmatched
-        # Construct a good path from r to v
-        # 以下、sからeへのpathが存在する場合
-        # 終点から遡ってpathを形成する
-        pp = v
-        while (1):
-            path.insert(0, pp)
-            if pp == r:
+        # In case that the last vertex v is matched
+        match = True
+
+    # Construct a good path from r to v
+    # 以下、sからeへのpathが存在する場合
+    # 終点から遡ってpathを形成する
+    pp = v
+
+    # for debugging
+    loopCount2 = 0
+    print ('initial pp: ' + pp)
+
+    while (1):
+        loopCount2 += 1
+        print ('loopCount2: ' + str(loopCount2))
+        if loopCount2 == 20:
+            return 'bugbug'
+
+        path.insert(0, pp)
+        print('add ' + pp +' to path')
+        if pp == r:
+            break
+
+        pred = G.predecessors(pp)
+
+        for p in pred:
+            if (G.node[p]['distance'] == G.node[pp]['distance'] - 1
+                and (G[p][pp]['cost'] - G.node[p]['price'] - G.node[pp]['price'] == 0)):
+                print('go backward')
+                print(pp)
+                print(G.node[pp]['distance'])
+                pp = p
+                print(pp)
+                print(G.node[pp]['distance'])
                 break
 
-            pred = G.predecessors(pp)
-
-            for p in pred:
-                if (G.node[p]['distance'] == G.node[pp]['distance'] - 1
-                    and (G[p][pp]['cost'] - G.node[p]['price'] - G.node[pp]['price'] == 0)):
-                    pp = p
-                    break
-
-        return [path, S, N]
+    return [path, S, N, match]
 
 
 def Hungarian(G, V, W):
@@ -181,16 +237,19 @@ def Hungarian(G, V, W):
     H = Initialize_H(G)
 
     # for debugging
-    loopCount = 0
+    exLoopCount = 0
+    NUM = 30
 
-    while (len(H.graph['M_vertices']) != len(V)):
+    while (len(H.graph['M_vertices']) != len(V) + len(W)):
         # a current matching M is not a perfect matching
 
         # for debugging
-        loopCount += 1
-        print('loopCount: ' + str(loopCount))
+        exLoopCount += 1
+        print('exLoopCount: ' + str(exLoopCount))
+        if (exLoopCount == NUM):
+            break
 
-        # pick a unmatched node in V
+        # pick the first unmatched node r of V
         for p in V:
             if (p not in H.graph['M_vertices']):
                 r = p
@@ -199,9 +258,22 @@ def Hungarian(G, V, W):
         # S: even level vertices of the BFS tree
         # N: odd level ones
         # path: a stucked path
-        path, S, N = BFS_GP(H, r, V, W)
+        # match: False if the BFS tree has an unmatched vertex
+        result = BFS_GP(H, r, V, W)
+        path = result[0]
+        S = result[1]
+        N = result[2]
+        match = result[3]
 
-        if (path[len(path) - 1] in (set(W) - set(H.graph['M_vertices']))):
+        # for debugging
+        print('path: ' + str(path))
+        print('S: ' + str(S))
+        print('N: ' + str(N))
+        print('match: ' + str(match))
+        print('current matching(edges): ' + str(H.graph['M_edges']))
+        print('current matching(vertices): ' + str(H.graph['M_vertices']))
+
+        if (not match and len(path) > 1):
             # the path contains an unmatched vertex w in W
             # If such w exists, it is the last vertex of the path
             # replace M
@@ -211,6 +283,8 @@ def Hungarian(G, V, W):
                     if (not path[i] in H.graph['M_vertices']):
                         # 毎度条件をcheckするのは非効率的か
                         H.graph['M_vertices'].append(path[i])
+                    if (not path[i+1] in H.graph['M_vertices']):
+                        H.graph['M_vertices'].append(path[i+1])
                     # 両方向に枝を追加
                     H.graph['M_edges'].append((path[i], path[i + 1]))
                     H.graph['M_edges'].append((path[i + 1], path[i]))
@@ -218,22 +292,44 @@ def Hungarian(G, V, W):
                     # the edge is from W to V, is in M
                     if (not path[i] in H.graph['M_vertices']):
                         H.graph['M_vertices'].append(path[i])
+                    if (not path[i+1] in H.graph['M_vertices']):
+                        H.graph['M_vertices'].append(path[i+1])
                     H.graph['M_edges'].remove((path[i], path[i + 1]))
                     H.graph['M_edges'].remove((path[i + 1], path[i]))
         else:
             # set diff as the reduced cost of the last edge in the stucked path
-
-            # ここで問題が生じているみたい
             # stucked pathが1点(この場合'v')からなるとき、('v','v')は存在しないのでkeyerror
-            # そもそも、そういうことが起きていいのか？（stuck pathのdef要確認）
-            # そういうとき、どういう処理をして進めばいいのか？
+            # stucked pathが一点からなる場合(while loopの一周目)
+            if (len(path) == 1):
+                diff = float('inf')
+                for p in H.successors(path[0]):
+                    diff = min(diff, H[path[0]][p]['cost'])
+                H.node[path[0]]['price'] += diff
 
-            diff = H[path[len(path) - 2]][path[len(path) - 1]]['cost'] - \
-                H.node[path[len(path) - 2]]['price'] - \
-                H.node[path[len(path) - 1]]['price']
+                # for debugging
+                print ('add ' + str(diff) + 'to ' + str(path[0]) + 's price')
+
+            # stucked pathが二点以上からなる場合
+            else:
+                # ここの決め方が問題
+                # (v,w), v in S, w not in N, となる枝をtightに
+                diff = float('inf')
+                for v in S:
+                    for w in H.successors(v):
+                        if w not in N:
+                            diff = min(diff, H[v][w]['cost'] - H.node[v]['price'] - H.node[w]['price'])
             for v in S:
                 H.node[v]['price'] += diff
+
+                # for debugging
+                print ('add ' + str(diff) + ' to ' + v + 's price')
+
             for w in N:
                 H.node[w]['price'] -= diff
 
+                # for debugging
+                print ('subtract ' + str(diff) + ' to ' + w + 's price')
+
+    if exLoopCount == NUM:
+        return 'still bugged'
     return H.graph['M_edges']
