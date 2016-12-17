@@ -37,8 +37,8 @@ def BFS(G, s):
         u = queue.popleft()
         for v in G.successors(u):
             if (G.node[v]['color'] == 'white'):
-                G.node[v]['color'] == 'gray'
-                G.node[v]['distance'] == G.node[u]['distance'] + 1
+                G.node[v]['color'] = 'gray'
+                G.node[v]['distance'] = G.node[u]['distance'] + 1
                 G.node[v]['parent'] = u
                 queue.append(v)
         G.node[v]['color'] = 'black'
